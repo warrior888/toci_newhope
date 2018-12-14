@@ -76,7 +76,6 @@
   <ItemGroup>
     <Compile Include="Bll\ApiTranslationProxy.cs" />
     <Compile Include="Dal\DbAccessBase.cs" />
-    <Compile Include="Dal\OracleDbAccess.cs" />
     <Compile Include="Dal\PostgresqlDbAccess.cs" />
     <Compile Include="Dal\TranslationDal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -7,7 +7,7 @@ namespace Toci.business.Dal
 
         public abstract bool Connect(string connectionString);
 
-        public abstract bool ExecuteInsert(string query);
+        public abstract int ExecuteInsert(string query);
 
         public abstract DataTable ExecuteSelect(string select);
 

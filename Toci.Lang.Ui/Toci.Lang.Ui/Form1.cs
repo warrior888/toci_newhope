@@ -23,21 +23,8 @@ namespace Toci.Lang.Ui
             int i = 0;
             foreach (DataRow row in result.Rows)
             {
-                Label l = new Label();
-                l.Text = row["fromword"].ToString();
-
-                Label l2 = new Label();
-
-                l2.Text = row["toword"].ToString();
-
-                l.Size = new Size(100, 20);
-                l2.Size = new Size(100, 20);
-
-                l.Location = new Point(20, 60 +(20 * ++i));
-                l2.Location = new Point(140, 60 + (20 * i));
-
-                Controls.Add(l);
-                Controls.Add(l2);
+                Controls.Add(ControlManager.CreateControl<Label>(100,20,20, 60 + (20 * ++i), row["fromword"].ToString()));
+                Controls.Add(ControlManager.CreateControl<Label>(100, 20, 140, 60 + (20 * i), row["toword"].ToString()));
             }
         }
     }
