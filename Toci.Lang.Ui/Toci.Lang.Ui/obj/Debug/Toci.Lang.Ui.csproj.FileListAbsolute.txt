@@ -66,3 +66,4 @@ C:\Users\Administrator\Documents\toci_newhope\Toci.Lang.Ui\Toci.Lang.Ui\obj\Debu
 C:\Users\Administrator\Documents\toci_newhope\Toci.Lang.Ui\Toci.Lang.Ui\obj\Debug\Toci.Lang.Ui.csproj.CopyComplete
 C:\Users\Administrator\Documents\toci_newhope\Toci.Lang.Ui\Toci.Lang.Ui\obj\Debug\Toci.Lang.Ui.exe
 C:\Users\Administrator\Documents\toci_newhope\Toci.Lang.Ui\Toci.Lang.Ui\obj\Debug\Toci.Lang.Ui.pdb
+C:\Users\Administrator\Documents\toci_newhope\Toci.Lang.Ui\Toci.Lang.Ui\obj\Debug\Toci.Lang.Ui.Mazur.QuizMazur.resources

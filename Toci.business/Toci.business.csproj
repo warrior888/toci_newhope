@@ -79,6 +79,12 @@
     <Compile Include="Dal\PostgresqlDbAccess.cs" />
     <Compile Include="Dal\TranslationDal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Quiz\Implementation\QuizAnswer.cs" />
+    <Compile Include="Quiz\Implementation\QuizEntity.cs" />
+    <Compile Include="Quiz\Interfaces\IQuizAnswer.cs" />
+    <Compile Include="Quiz\Interfaces\IQuizEntity.cs" />
+    <Compile Include="Quiz\Interfaces\IQuizLogic.cs" />
+    <Compile Include="Quiz\Mock\QuizLogicMock.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

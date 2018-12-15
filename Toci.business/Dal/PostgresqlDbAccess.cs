@@ -8,6 +8,11 @@ namespace Toci.business.Dal
     {
         protected NpgsqlConnection Connection;
 
+        public PostgresqlDbAccess()
+        {
+            Connect("User ID=postgres;Password=beatka;Host=localhost;Port=5432;Database=translator;");
+        }
+
         public override bool Connect(string connectionString)
         {
             Connection = new NpgsqlConnection(connectionString);
@@ -19,7 +24,6 @@ namespace Toci.business.Dal
 
         public override int ExecuteInsert(string query)
         {
-            Connect("User ID=postgres;Password=beatka;Host=localhost;Port=5432;Database=translator;");
             NpgsqlCommand command = Connection.CreateCommand();
 
             command.CommandText = query;
@@ -31,7 +35,6 @@ namespace Toci.business.Dal
 
         public override DataTable ExecuteSelect(string @select)
         {
-            Connect("User ID=postgres;Password=beatka;Host=localhost;Port=5432;Database=translator;");
             NpgsqlCommand command = Connection.CreateCommand();
 
             command.CommandText = @select;

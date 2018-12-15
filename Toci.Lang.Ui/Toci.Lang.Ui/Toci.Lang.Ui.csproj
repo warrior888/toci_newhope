@@ -60,6 +60,12 @@
     <Compile Include="FormAddWord.Designer.cs">
       <DependentUpon>FormAddWord.cs</DependentUpon>
     </Compile>
+    <Compile Include="Mazur\QuizMazur.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mazur\QuizMazur.Designer.cs">
+      <DependentUpon>QuizMazur.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
@@ -67,6 +73,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormAddWord.resx">
       <DependentUpon>FormAddWord.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mazur\QuizMazur.resx">
+      <DependentUpon>QuizMazur.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -95,6 +104,9 @@
       <Project>{cb32548b-2bb7-41c5-842b-0d8d63ea1623}</Project>
       <Name>Toci.business</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="GhostRider\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

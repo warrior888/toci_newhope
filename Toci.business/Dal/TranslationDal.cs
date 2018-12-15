@@ -28,5 +28,12 @@ namespace Toci.business.Dal
 
             return ExecuteSelect(query);
         }
+
+        public virtual DataTable GetTranslationsFromTo(string fromLanguage, string toLanguage)
+        {
+            string query = "select * from translations where fromlanguage = '" + fromLanguage +"' and tolanguage = '" + toLanguage + "'";
+
+            return ExecuteSelect(query);
+        }
     }
 }
