@@ -1,9 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
 using Toci.business.Bll;
 using Toci.business.Dal;
+using Toci.business.EfExample;
+using Toci.business.Reflection;
 
 namespace Toci.Lang.Ui
 {
@@ -27,9 +30,22 @@ namespace Toci.Lang.Ui
 
         private void button1_Click(object sender, System.EventArgs e)
         {
-            DataTable result = dal.GetTranslationsFromTo("pl", textBox1.Text);
-            AddTranslationsLabels(result, "fromword","toword",20,62);
-            
+            //DataTable result = dal.GetTranslationsFromTo("pl", textBox1.Text);
+            //AddTranslationsLabels(result, "fromword","toword",20,62);
+            EfClassGenerator generator = new EfClassGenerator();
+
+            generator.GenerateCode();
+
+            ReflectionExample re = new ReflectionExample();
+
+            List<string> props = re.GetDataModelProperties();
+
+            DataModel dm = new DataModel();
+
+            re.SetPrivateField(dm, "dupa", "ToDaSieWypelnicRefleksja");
+
+            re.RunGenericMethodByString(re, "SetPrivateField", new Type[] {typeof(DataModel), typeof(string)}, dm);
+
         }
         private void ButtonAcceptClick(object sender, System.EventArgs e)
         {

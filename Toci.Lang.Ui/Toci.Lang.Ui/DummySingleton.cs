@@ -2,6 +2,7 @@
 {
     public class DummySingleton//<T> where T : new()
     {
+        public int IAmAProperty { get; set; }
         private static DummySingleton Instance;
         private DummySingleton()
         {
