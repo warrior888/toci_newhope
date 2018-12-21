@@ -4,7 +4,7 @@ using Npgsql;
 
 namespace Toci.business.Dal
 {
-    public class PostgresqlDbAccess : DbAccessBase
+    public class PostgresqlDbAccess : DbAccessBase<DataTable>
     {
         protected NpgsqlConnection Connection;
 

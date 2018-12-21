@@ -37,6 +37,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\Toci.Lang.Ui\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="ExcelDataReader, Version=3.4.2.0, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
+      <HintPath>..\Toci.Lang.Ui\packages\ExcelDataReader.3.4.2\lib\net45\ExcelDataReader.dll</HintPath>
+    </Reference>
     <Reference Include="Google.Apis, Version=1.36.1.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
       <HintPath>..\Toci.Lang.Ui\packages\Google.Apis.1.36.1\lib\net45\Google.Apis.dll</HintPath>
     </Reference>
@@ -55,22 +58,17 @@
     <Reference Include="Google.Apis.Translate.v2, Version=1.36.1.875, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
       <HintPath>..\Toci.Lang.Ui\packages\Google.Apis.Translate.v2.1.36.1.875\lib\net45\Google.Apis.Translate.v2.dll</HintPath>
     </Reference>
-    <Reference Include="Mono.Security, Version=4.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
-      <HintPath>..\Toci.Lang.Ui\packages\Npgsql.2.2.7\lib\net45\Mono.Security.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\Toci.Lang.Ui\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Npgsql, Version=2.2.7.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
-      <HintPath>..\Toci.Lang.Ui\packages\Npgsql.2.2.7\lib\net45\Npgsql.dll</HintPath>
-    </Reference>
-    <Reference Include="Npgsql.EntityFramework, Version=2.2.7.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
-      <HintPath>..\Toci.Lang.Ui\packages\Npgsql.EntityFramework.2.2.7\lib\net45\Npgsql.EntityFramework.dll</HintPath>
+    <Reference Include="Npgsql, Version=4.0.4.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
+      <HintPath>..\Toci.Lang.Ui\packages\Npgsql.4.0.4\lib\net451\Npgsql.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL" />
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\Toci.Lang.Ui\packages\System.Runtime.CompilerServices.Unsafe.4.5.0\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
@@ -92,7 +90,10 @@
   <ItemGroup>
     <Compile Include="Bll\ApiTranslationProxy.cs" />
     <Compile Include="Dal\DbAccessBase.cs" />
+    <Compile Include="Dal\ExcelDbAccess.cs" />
     <Compile Include="Dal\PostgresqlDbAccess.cs" />
+    <Compile Include="Dal\TextFileDal.cs" />
+    <Compile Include="Dal\TextFileDbAccess.cs" />
     <Compile Include="Dal\TranslationDal.cs" />
     <Compile Include="EfExample\EfClassGenerator.cs" />
     <Compile Include="EfExample\TypeTranslator.cs" />
@@ -103,9 +104,18 @@
     <Compile Include="Quiz\Interfaces\IQuizEntity.cs" />
     <Compile Include="Quiz\Interfaces\IQuizLogic.cs" />
     <Compile Include="Quiz\Mock\QuizLogicMock.cs" />
+    <Compile Include="Quiz\Quiz.cs" />
+    <Compile Include="Quiz\QuizAnswer.cs" />
+    <Compile Include="Quiz\QuizLogic.cs" />
+    <Compile Include="Quiz\QuizQuestion.cs" />
     <Compile Include="Reflection\DataModel.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Toci.Lang.Ui\Toci.Business.Interfaces\Toci.Business.Interfaces.csproj">
+      <Project>{8fc4bdaa-1ee3-449c-909b-c403c71e55a9}</Project>
+      <Name>Toci.Business.Interfaces</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />

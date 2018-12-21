@@ -6,7 +6,9 @@ using System.Windows.Forms;
 using Toci.business.Bll;
 using Toci.business.Dal;
 using Toci.business.EfExample;
+using Toci.business.Quiz;
 using Toci.business.Reflection;
+using Toci.Business.Interfaces;
 
 namespace Toci.Lang.Ui
 {
@@ -16,8 +18,12 @@ namespace Toci.Lang.Ui
 
         private ComboBox languageFromCombo;
         private ComboBox languageToCombo;
+        private ComboBox quizQuizFromLanguageCombo;
+        private ComboBox quizQuizToLanguageCombo;
         private Button ListTranslations;
+        private Button quizButton;
         private List<Control> ControlsToRefresh = new List<Control>();
+        private QuizLogic ql = new QuizLogic();
 
         public Form1()
         {
@@ -60,6 +66,36 @@ namespace Toci.Lang.Ui
             w.Show();
         }
 
+        private void quizButtonClick(object sender, System.EventArgs e)
+        {
+           // DataTable result = dal.GetTranslationsFromTo(quizQuizFromLanguageCombo.Text, quizQuizToLanguageCombo.Text);
+            List<IQuiz> get = ql.GetQuiz(quizQuizFromLanguageCombo.Text, quizQuizToLanguageCombo.Text);
+            int i = 0;
+            foreach (var quizQuestion in get)
+            {
+                Label l1 = ControlManager.CreateControl<Label>(100, 20, 540, 82 + (20 *++i), quizQuestion.Question.Word);
+                Controls.Add(l1);
+
+                int j = 0;
+                foreach (var answer in quizQuestion.Answers)
+                {
+                    QuizButton b1 = ControlManager.CreateControl<QuizButton>(100, 20, 630 +(110 * ++j), 82 + (20 * i), answer.Word);
+                    b1.CorrectAnswer = answer.IsCorrect;
+                    
+                    Controls.Add(b1);
+
+                }
+            }
+           
+        }
+
+        private void selectAnswerClick(object sender, EventArgs e)
+        {
+            QuizButton b = (QuizButton) sender;
+            //if (b.CorrectAnswer)
+            //    Label ls = ControlManager.
+        }
+
         private void AddTranslationsLabels(DataTable result, string lbFrom, string lbTo, int locationX, int locationY)
         {
             foreach (Control control in ControlsToRefresh)
@@ -78,6 +114,8 @@ namespace Toci.Lang.Ui
                 ControlsToRefresh.Add(l2);
                 Controls.Add(l1);
                 Controls.Add(l2);
+
+
             }
 
         }
@@ -87,17 +125,28 @@ namespace Toci.Lang.Ui
             //ApiTranslationProxy.languages
 
             languageFromCombo = ControlManager.CreateControl<ComboBox>(100, 20, 210, 42, string.Empty);
+            quizQuizFromLanguageCombo = ControlManager.CreateControl<ComboBox>(100, 20, 540, 42, string.Empty);
             languageToCombo = ControlManager.CreateControl<ComboBox>(100, 20, 320, 42, string.Empty);
+            quizQuizToLanguageCombo = ControlManager.CreateControl<ComboBox>(100, 20, 650, 42, string.Empty);
             ListTranslations = ControlManager.CreateControl<Button>(100, 20, 420, 42, "accept");
+            quizButton = ControlManager.CreateControl<Button>(100, 20, 760, 42, "accept");
+
+            
 
             ListTranslations.Click += ButtonAcceptClick;
+            quizButton.Click += quizButtonClick;
 
             AddItemsToCombo(languageFromCombo, ApiTranslationProxy.languages);
+            AddItemsToCombo(quizQuizFromLanguageCombo, ApiTranslationProxy.languages);
             AddItemsToCombo(languageToCombo, ApiTranslationProxy.languages);
+            AddItemsToCombo(quizQuizToLanguageCombo, ApiTranslationProxy.languages);
 
             Controls.Add(languageFromCombo);
+            Controls.Add(quizQuizFromLanguageCombo);
             Controls.Add(languageToCombo);
+            Controls.Add(quizQuizToLanguageCombo);
             Controls.Add(ListTranslations);
+            Controls.Add(quizButton);
         }
 
         private ComboBox AddItemsToCombo(ComboBox cmb, string[] items)

@@ -68,6 +68,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QuizButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -103,6 +106,10 @@
     <ProjectReference Include="..\..\Toci.business\Toci.business.csproj">
       <Project>{cb32548b-2bb7-41c5-842b-0d8d63ea1623}</Project>
       <Name>Toci.business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Toci.Business.Interfaces\Toci.Business.Interfaces.csproj">
+      <Project>{8fc4bdaa-1ee3-449c-909b-c403c71e55a9}</Project>
+      <Name>Toci.Business.Interfaces</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

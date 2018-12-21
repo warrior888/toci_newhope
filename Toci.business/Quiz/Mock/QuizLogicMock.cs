@@ -15,8 +15,8 @@ namespace Toci.business.Quiz.Mock
                     Word = "dupa",
                     Answers = new Dictionary<string, IQuizAnswer>()
                     {
-                        {"ass", new QuizAnswer() { Word = "ass", IsCorrectAnswer = true}},
-                        {"computer", new QuizAnswer() { Word = "computer", IsCorrectAnswer = false}},
+                        //{"ass", new QuizAnswer() { Word = "ass", IsCorrectAnswer = true}},
+                        //{"computer", new QuizAnswer() { Word = "computer", IsCorrectAnswer = false}},
                     }
                 }
             };
