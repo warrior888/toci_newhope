@@ -1,0 +1,420 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="halkidikiModel.Store" Provider="Npgsql" ProviderManifestToken="11.0" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="appuser">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="login" Type="text" />
+          <Property Name="password" Type="text" />
+          <Property Name="email" Type="text" />
+          <Property Name="idoccupation" Type="int4" Nullable="false" />
+        </EntityType>
+        <EntityType Name="language">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="language" Type="text" />
+        </EntityType>
+        <EntityType Name="occupation">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="occupation" Type="text" />
+        </EntityType>
+        <EntityType Name="translation">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idword" Type="int4" Nullable="false" />
+          <Property Name="idlanguage" Type="int4" Nullable="false" />
+          <Property Name="translation" Type="text" />
+        </EntityType>
+        <EntityType Name="word">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="word" Type="text" />
+        </EntityType>
+        <EntityType Name="wordfrequency">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idlanguage" Type="int4" Nullable="false" />
+          <Property Name="idword" Type="int4" Nullable="false" />
+          <Property Name="idappuser" Type="int4" Nullable="false" />
+          <Property Name="frequency" Type="int4" />
+          <Property Name="ismemorized" Type="int4" />
+        </EntityType>
+        <Association Name="appuser_idoccupation_fkey">
+          <End Role="occupation" Type="Self.occupation" Multiplicity="1" />
+          <End Role="appuser" Type="Self.appuser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="occupation">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="appuser">
+              <PropertyRef Name="idoccupation" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="translation_idlanguage_fkey">
+          <End Role="language" Type="Self.language" Multiplicity="1" />
+          <End Role="translation" Type="Self.translation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="language">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="translation">
+              <PropertyRef Name="idlanguage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="translation_idword_fkey">
+          <End Role="word" Type="Self.word" Multiplicity="1" />
+          <End Role="translation" Type="Self.translation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="word">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="translation">
+              <PropertyRef Name="idword" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="wordfrequency_idappuser_fkey">
+          <End Role="appuser" Type="Self.appuser" Multiplicity="1" />
+          <End Role="wordfrequency" Type="Self.wordfrequency" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="appuser">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="wordfrequency">
+              <PropertyRef Name="idappuser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="wordfrequency_idlanguage_fkey">
+          <End Role="language" Type="Self.language" Multiplicity="1" />
+          <End Role="wordfrequency" Type="Self.wordfrequency" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="language">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="wordfrequency">
+              <PropertyRef Name="idlanguage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="wordfrequency_idword_fkey">
+          <End Role="word" Type="Self.word" Multiplicity="1" />
+          <End Role="wordfrequency" Type="Self.wordfrequency" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="word">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="wordfrequency">
+              <PropertyRef Name="idword" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="halkidikiModelStoreContainer">
+          <EntitySet Name="appuser" EntityType="Self.appuser" Schema="public" store:Type="Tables" />
+          <EntitySet Name="language" EntityType="Self.language" Schema="public" store:Type="Tables" />
+          <EntitySet Name="occupation" EntityType="Self.occupation" Schema="public" store:Type="Tables" />
+          <EntitySet Name="translation" EntityType="Self.translation" Schema="public" store:Type="Tables" />
+          <EntitySet Name="word" EntityType="Self.word" Schema="public" store:Type="Tables" />
+          <EntitySet Name="wordfrequency" EntityType="Self.wordfrequency" Schema="public" store:Type="Tables" />
+          <AssociationSet Name="appuser_idoccupation_fkey" Association="Self.appuser_idoccupation_fkey">
+            <End Role="occupation" EntitySet="occupation" />
+            <End Role="appuser" EntitySet="appuser" />
+          </AssociationSet>
+          <AssociationSet Name="translation_idlanguage_fkey" Association="Self.translation_idlanguage_fkey">
+            <End Role="language" EntitySet="language" />
+            <End Role="translation" EntitySet="translation" />
+          </AssociationSet>
+          <AssociationSet Name="translation_idword_fkey" Association="Self.translation_idword_fkey">
+            <End Role="word" EntitySet="word" />
+            <End Role="translation" EntitySet="translation" />
+          </AssociationSet>
+          <AssociationSet Name="wordfrequency_idappuser_fkey" Association="Self.wordfrequency_idappuser_fkey">
+            <End Role="appuser" EntitySet="appuser" />
+            <End Role="wordfrequency" EntitySet="wordfrequency" />
+          </AssociationSet>
+          <AssociationSet Name="wordfrequency_idlanguage_fkey" Association="Self.wordfrequency_idlanguage_fkey">
+            <End Role="language" EntitySet="language" />
+            <End Role="wordfrequency" EntitySet="wordfrequency" />
+          </AssociationSet>
+          <AssociationSet Name="wordfrequency_idword_fkey" Association="Self.wordfrequency_idword_fkey">
+            <End Role="word" EntitySet="word" />
+            <End Role="wordfrequency" EntitySet="wordfrequency" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="halkidikiModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="appuser">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="login" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="idoccupation" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="occupation" Relationship="Self.appuser_idoccupation_fkey" FromRole="appuser" ToRole="occupation" />
+          <NavigationProperty Name="wordfrequency" Relationship="Self.wordfrequency_idappuser_fkey" FromRole="appuser" ToRole="wordfrequency" />
+        </EntityType>
+        <EntityType Name="language">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="language1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="translation" Relationship="Self.translation_idlanguage_fkey" FromRole="language" ToRole="translation" />
+          <NavigationProperty Name="wordfrequency" Relationship="halkidikiModel.wordfrequency_idlanguage_fkey" FromRole="language" ToRole="wordfrequency" />
+        </EntityType>
+        <EntityType Name="occupation">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="occupation1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="appuser" Relationship="Self.appuser_idoccupation_fkey" FromRole="occupation" ToRole="appuser" />
+        </EntityType>
+        <EntityType Name="translation">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idword" Type="Int32" Nullable="false" />
+          <Property Name="idlanguage" Type="Int32" Nullable="false" />
+          <Property Name="translation1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="language" Relationship="Self.translation_idlanguage_fkey" FromRole="translation" ToRole="language" />
+          <NavigationProperty Name="word" Relationship="Self.translation_idword_fkey" FromRole="translation" ToRole="word" />
+        </EntityType>
+        <EntityType Name="word">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="word1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="translation" Relationship="Self.translation_idword_fkey" FromRole="word" ToRole="translation" />
+          <NavigationProperty Name="wordfrequency" Relationship="Self.wordfrequency_idword_fkey" FromRole="word" ToRole="wordfrequency" />
+        </EntityType>
+        <EntityType Name="wordfrequency">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idword" Type="Int32" Nullable="false" />
+          <Property Name="idappuser" Type="Int32" Nullable="false" />
+          <Property Name="frequency" Type="Int32" />
+          <NavigationProperty Name="appuser" Relationship="Self.wordfrequency_idappuser_fkey" FromRole="wordfrequency" ToRole="appuser" />
+          <NavigationProperty Name="word" Relationship="Self.wordfrequency_idword_fkey" FromRole="wordfrequency" ToRole="word" />
+          <Property Name="idlanguage" Type="Int32" Nullable="false" />
+          <Property Name="ismemorized" Type="Int32" />
+          <NavigationProperty Name="language" Relationship="halkidikiModel.wordfrequency_idlanguage_fkey" FromRole="wordfrequency" ToRole="language" />
+        </EntityType>
+        <Association Name="appuser_idoccupation_fkey">
+          <End Role="occupation" Type="Self.occupation" Multiplicity="1" />
+          <End Role="appuser" Type="Self.appuser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="occupation">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="appuser">
+              <PropertyRef Name="idoccupation" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="wordfrequency_idappuser_fkey">
+          <End Role="appuser" Type="Self.appuser" Multiplicity="1" />
+          <End Role="wordfrequency" Type="Self.wordfrequency" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="appuser">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="wordfrequency">
+              <PropertyRef Name="idappuser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="translation_idlanguage_fkey">
+          <End Role="language" Type="Self.language" Multiplicity="1" />
+          <End Role="translation" Type="Self.translation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="language">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="translation">
+              <PropertyRef Name="idlanguage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="translation_idword_fkey">
+          <End Role="word" Type="Self.word" Multiplicity="1" />
+          <End Role="translation" Type="Self.translation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="word">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="translation">
+              <PropertyRef Name="idword" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="wordfrequency_idword_fkey">
+          <End Role="word" Type="Self.word" Multiplicity="1" />
+          <End Role="wordfrequency" Type="Self.wordfrequency" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="word">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="wordfrequency">
+              <PropertyRef Name="idword" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="halkidikiEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="appuser" EntityType="Self.appuser" />
+          <EntitySet Name="language" EntityType="Self.language" />
+          <EntitySet Name="occupation" EntityType="Self.occupation" />
+          <EntitySet Name="translation" EntityType="Self.translation" />
+          <EntitySet Name="word" EntityType="Self.word" />
+          <EntitySet Name="wordfrequency" EntityType="Self.wordfrequency" />
+          <AssociationSet Name="appuser_idoccupation_fkey" Association="Self.appuser_idoccupation_fkey">
+            <End Role="occupation" EntitySet="occupation" />
+            <End Role="appuser" EntitySet="appuser" />
+          </AssociationSet>
+          <AssociationSet Name="wordfrequency_idappuser_fkey" Association="Self.wordfrequency_idappuser_fkey">
+            <End Role="appuser" EntitySet="appuser" />
+            <End Role="wordfrequency" EntitySet="wordfrequency" />
+          </AssociationSet>
+          <AssociationSet Name="translation_idlanguage_fkey" Association="Self.translation_idlanguage_fkey">
+            <End Role="language" EntitySet="language" />
+            <End Role="translation" EntitySet="translation" />
+          </AssociationSet>
+          <AssociationSet Name="translation_idword_fkey" Association="Self.translation_idword_fkey">
+            <End Role="word" EntitySet="word" />
+            <End Role="translation" EntitySet="translation" />
+          </AssociationSet>
+          <AssociationSet Name="wordfrequency_idword_fkey" Association="Self.wordfrequency_idword_fkey">
+            <End Role="word" EntitySet="word" />
+            <End Role="wordfrequency" EntitySet="wordfrequency" />
+          </AssociationSet>
+          <AssociationSet Name="wordfrequency_idlanguage_fkey" Association="halkidikiModel.wordfrequency_idlanguage_fkey">
+            <End Role="language" EntitySet="language" />
+            <End Role="wordfrequency" EntitySet="wordfrequency" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="wordfrequency_idlanguage_fkey">
+          <End Type="halkidikiModel.language" Role="language" Multiplicity="1" />
+          <End Type="halkidikiModel.wordfrequency" Role="wordfrequency" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="language">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="wordfrequency">
+              <PropertyRef Name="idlanguage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="halkidikiModelStoreContainer" CdmEntityContainer="halkidikiEntities">
+          <EntitySetMapping Name="appuser">
+            <EntityTypeMapping TypeName="halkidikiModel.appuser">
+              <MappingFragment StoreEntitySet="appuser">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="idoccupation" ColumnName="idoccupation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="language">
+            <EntityTypeMapping TypeName="halkidikiModel.language">
+              <MappingFragment StoreEntitySet="language">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="language1" ColumnName="language" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="occupation">
+            <EntityTypeMapping TypeName="halkidikiModel.occupation">
+              <MappingFragment StoreEntitySet="occupation">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="occupation1" ColumnName="occupation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="translation">
+            <EntityTypeMapping TypeName="halkidikiModel.translation">
+              <MappingFragment StoreEntitySet="translation">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idword" ColumnName="idword" />
+                <ScalarProperty Name="idlanguage" ColumnName="idlanguage" />
+                <ScalarProperty Name="translation1" ColumnName="translation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="word">
+            <EntityTypeMapping TypeName="halkidikiModel.word">
+              <MappingFragment StoreEntitySet="word">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="word1" ColumnName="word" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wordfrequency">
+            <EntityTypeMapping TypeName="halkidikiModel.wordfrequency">
+              <MappingFragment StoreEntitySet="wordfrequency">
+                <ScalarProperty Name="ismemorized" ColumnName="ismemorized" />
+                <ScalarProperty Name="idlanguage" ColumnName="idlanguage" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idword" ColumnName="idword" />
+                <ScalarProperty Name="idappuser" ColumnName="idappuser" />
+                <ScalarProperty Name="frequency" ColumnName="frequency" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

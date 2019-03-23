@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="cb62e58705714d5fbad9d5d880052fe1" Name="Diagram1">
+        <EntityTypeShape EntityType="halkidikiModel.appuser" Width="1.5" PointX="0.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="halkidikiModel.language" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="halkidikiModel.occupation" Width="1.5" PointX="1.5" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="halkidikiModel.translation" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="halkidikiModel.word" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="halkidikiModel.wordfrequency" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="halkidikiModel.appuser_idoccupation_fkey" ManuallyRouted="false" />
+        <AssociationConnector Association="halkidikiModel.wordfrequency_idappuser_fkey" ManuallyRouted="false" />
+        <AssociationConnector Association="halkidikiModel.translation_idlanguage_fkey" ManuallyRouted="false" />
+        <AssociationConnector Association="halkidikiModel.translation_idword_fkey" ManuallyRouted="false" />
+        <AssociationConnector Association="halkidikiModel.wordfrequency_idword_fkey" ManuallyRouted="false" />
+        <AssociationConnector Association="halkidikiModel.wordfrequency_idlanguage_fkey" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
