@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
 
 namespace Halkidiki.Dal.Interfaces
 {
@@ -10,6 +12,6 @@ namespace Halkidiki.Dal.Interfaces
 
         int Delete(TModel model);
 
-        List<TModel> Select(TModel model);
+        List<TModel> Select<TOrderByKey>(ISelectSql<TModel, TOrderByKey> where);
     }
 }

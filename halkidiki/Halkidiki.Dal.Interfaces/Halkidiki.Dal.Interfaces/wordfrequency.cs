@@ -14,6 +14,12 @@ namespace Halkidiki.Dal.Interfaces
     
     public partial class wordfrequency
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public wordfrequency()
+        {
+            this.wordlearninghistory = new HashSet<wordlearninghistory>();
+        }
+    
         public int id { get; set; }
         public int idword { get; set; }
         public int idappuser { get; set; }
@@ -24,5 +30,7 @@ namespace Halkidiki.Dal.Interfaces
         public virtual appuser appuser { get; set; }
         public virtual word word { get; set; }
         public virtual language language { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<wordlearninghistory> wordlearninghistory { get; set; }
     }
 }

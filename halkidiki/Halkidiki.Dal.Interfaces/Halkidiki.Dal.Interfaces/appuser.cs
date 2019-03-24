@@ -18,6 +18,9 @@ namespace Halkidiki.Dal.Interfaces
         public appuser()
         {
             this.wordfrequency = new HashSet<wordfrequency>();
+            this.logtime = new HashSet<logtime>();
+            this.spokensentence = new HashSet<spokensentence>();
+            this.wordlearninghistory = new HashSet<wordlearninghistory>();
         }
     
         public int id { get; set; }
@@ -29,5 +32,11 @@ namespace Halkidiki.Dal.Interfaces
         public virtual occupation occupation { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<wordfrequency> wordfrequency { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<logtime> logtime { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<spokensentence> spokensentence { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<wordlearninghistory> wordlearninghistory { get; set; }
     }
 }

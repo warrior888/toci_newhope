@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
+using System.Linq;
+using System.Linq.Expressions;
 using Halkidiki.Dal.Interfaces;
 
 namespace Halkidiki.Dal
@@ -31,9 +34,13 @@ namespace Halkidiki.Dal
             return entities.SaveChanges();
         }
 
-        public virtual List<TModel> Select(TModel model)
+        public virtual List<TModel> Select<TOrderByKey>(ISelectSql<TModel, TOrderByKey> where)
         {
-            throw new System.NotImplementedException();
+            halkidikiEntities entities = new halkidikiEntities();
+
+            IQueryable<TModel> entitySet = entities.Set<TModel>().Where(where.Where);
+
+            return entitySet.ToList();
         }
 
         public virtual int Update(TModel model)

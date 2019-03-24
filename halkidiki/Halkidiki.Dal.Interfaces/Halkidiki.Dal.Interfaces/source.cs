@@ -12,24 +12,18 @@ namespace Halkidiki.Dal.Interfaces
     using System;
     using System.Collections.Generic;
     
-    public partial class word
+    public partial class source
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public word()
+        public source()
         {
-            this.translation = new HashSet<translation>();
-            this.wordfrequency = new HashSet<wordfrequency>();
-            this.translationtag = new HashSet<translationtag>();
+            this.spokensentence = new HashSet<spokensentence>();
         }
     
         public int id { get; set; }
-        public string word1 { get; set; }
+        public string source1 { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<translation> translation { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<wordfrequency> wordfrequency { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<translationtag> translationtag { get; set; }
+        public virtual ICollection<spokensentence> spokensentence { get; set; }
     }
 }

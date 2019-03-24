@@ -19,6 +19,7 @@ namespace Halkidiki.Dal.Interfaces
         {
             this.translation = new HashSet<translation>();
             this.wordfrequency = new HashSet<wordfrequency>();
+            this.spokensentence = new HashSet<spokensentence>();
         }
     
         public int id { get; set; }
@@ -28,5 +29,7 @@ namespace Halkidiki.Dal.Interfaces
         public virtual ICollection<translation> translation { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<wordfrequency> wordfrequency { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<spokensentence> spokensentence { get; set; }
     }
 }

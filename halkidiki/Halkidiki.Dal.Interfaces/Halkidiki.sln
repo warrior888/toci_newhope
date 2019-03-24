@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Halkidiki.Dal", "Halkidiki.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Halkidiki.Test", "Halkidiki.Test\Halkidiki.Test.csproj", "{565AF888-AABE-48BA-9864-AF891D7E13DC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Halkidiki.Bll.Interfaces", "Halkidiki.Bll.Interfaces\Halkidiki.Bll.Interfaces.csproj", "{EE9B42B7-8846-4E51-A445-B5B95F35E99C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Halkidiki.Bll", "Halkidiki.Bll\Halkidiki.Bll.csproj", "{8DE7C0A6-FE6E-4232-9AF7-0D27027B162C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{565AF888-AABE-48BA-9864-AF891D7E13DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{565AF888-AABE-48BA-9864-AF891D7E13DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{565AF888-AABE-48BA-9864-AF891D7E13DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE9B42B7-8846-4E51-A445-B5B95F35E99C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE9B42B7-8846-4E51-A445-B5B95F35E99C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE9B42B7-8846-4E51-A445-B5B95F35E99C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE9B42B7-8846-4E51-A445-B5B95F35E99C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8DE7C0A6-FE6E-4232-9AF7-0D27027B162C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DE7C0A6-FE6E-4232-9AF7-0D27027B162C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DE7C0A6-FE6E-4232-9AF7-0D27027B162C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DE7C0A6-FE6E-4232-9AF7-0D27027B162C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
