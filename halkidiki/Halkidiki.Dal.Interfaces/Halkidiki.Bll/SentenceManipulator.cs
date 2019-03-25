@@ -16,6 +16,7 @@ namespace Halkidiki.Bll
 
         public virtual bool AcceptSentence(int userId, string sentence, int languageId)
         {
+            // question to google for recognized language
             List<string> sentenceElements = ExplodeSentence(sentence);
 
             foreach(string word in sentenceElements)
