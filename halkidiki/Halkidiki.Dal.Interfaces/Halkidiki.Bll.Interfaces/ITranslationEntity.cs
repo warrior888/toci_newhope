@@ -2,7 +2,9 @@
 {
     public interface ITranslationEntity
     {
-        string Language { get; set; }
+        string SourceLanguage { get; set; }
+
+        string TargetLanguage { get; set; }
 
         string SourceWord { get; set; }
 

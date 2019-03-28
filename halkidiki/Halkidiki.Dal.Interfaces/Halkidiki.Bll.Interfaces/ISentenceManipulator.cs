@@ -2,8 +2,6 @@
 {
     public interface ISentenceManipulator
     {
-        bool AcceptSentence(int userId, string sentence, int languageId);
-
-        ITranslationEntity Translate(string word, string destinationLanguage);
+        bool AcceptSentence(int userId, string sentence, string languageFrom, string languageTo);
     }
 }

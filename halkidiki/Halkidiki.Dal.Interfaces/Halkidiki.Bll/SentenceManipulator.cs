@@ -14,24 +14,18 @@ namespace Halkidiki.Bll
         protected IDal<word> WordDal = new Dal<word>();
         protected IDal<translation> translationDal = new Dal<translation>();
 
-        public virtual bool AcceptSentence(int userId, string sentence, int languageId)
+        public virtual bool AcceptSentence(int userId, string sentence, string languageFrom, string languageTo)
         {
-            // question to google for recognized language
             List<string> sentenceElements = ExplodeSentence(sentence);
 
             foreach(string word in sentenceElements)
             {
-                translation t = translationDal.Select(new SelectSql<translation, string>() {Where = model => model.idlanguage == languageId && model.translation1 == word}).First();
+                translation t = translationDal.Select(new SelectSql<translation, string>() {Where = model => model.language.language1 == languageFrom && model.translation1 == word}).First();
 
 
             }
 
             return true;
-        }
-
-        public virtual ITranslationEntity Translate(string word, string destinationLanguage)
-        {
-            throw new System.NotImplementedException();
         }
 
         protected virtual List<string> ExplodeSentence(string sentence)
