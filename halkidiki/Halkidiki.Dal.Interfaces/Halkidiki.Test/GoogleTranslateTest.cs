@@ -20,8 +20,13 @@ namespace Halkidiki.Test
                 Words = new List<string>()
                 {
                     "co",
-                    "dom"
+                    "dom",
+                    "brat",
+                    "żona",
+                    "syn"
                 }
+
+
             };
 
             List<TranslationResult> result = googleTranslator.Translate(candidate);

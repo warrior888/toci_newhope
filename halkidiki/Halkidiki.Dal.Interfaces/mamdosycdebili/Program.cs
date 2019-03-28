@@ -12,8 +12,12 @@ namespace mamdosycdebili
         static void Main(string[] args)
         {
             GoogleTranslateTest t = new GoogleTranslateTest();
+            //
+            //t.TranslateGoogleTest();
 
-            t.TranslateGoogleTest();
+            DalTests dt = new DalTests();
+
+            dt.TestAddedLanguage();
         }
     }
 }

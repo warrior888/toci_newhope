@@ -13,6 +13,7 @@ namespace Halkidiki.Bll
 
         protected IDal<word> WordDal = new Dal<word>();
         protected IDal<translation> translationDal = new Dal<translation>();
+        protected IDal<language> languageDal = new Dal<language>();
 
         public virtual bool AcceptSentence(int userId, string sentence, string languageFrom, string languageTo)
         {
@@ -26,6 +27,18 @@ namespace Halkidiki.Bll
             }
 
             return true;
+        }
+
+        public virtual int CheckAddLanguage (string language)
+        {
+            language lang = languageDal.Select(new SelectSql<language, string>() {Where = x => x.language1 == language}).First();
+            if(lang == null)
+            {
+               return languageDal.Insert(new language() {language1 = language});
+                 
+            }
+
+            return 0;
         }
 
         protected virtual List<string> ExplodeSentence(string sentence)

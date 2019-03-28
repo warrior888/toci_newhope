@@ -2,6 +2,7 @@
 using Halkidiki.Dal;
 using Halkidiki.Dal.Interfaces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Halkidiki.Bll;
 
 namespace Halkidiki.Test
 {
@@ -23,5 +24,19 @@ namespace Halkidiki.Test
 
             Assert.AreEqual(0, affRows);
         }
+
+        [TestMethod]
+        public void TestAddedLanguage()
+        {
+            SentenceManipulator sen = new SentenceManipulator();
+
+            sen.CheckAddLanguage("pl");
+            sen.CheckAddLanguage("pl");
+
+
+
+
+        }
+
     }
 }
