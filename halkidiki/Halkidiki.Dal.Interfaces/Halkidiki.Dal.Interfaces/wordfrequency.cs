@@ -21,15 +21,15 @@ namespace Halkidiki.Dal.Interfaces
         }
     
         public int id { get; set; }
+        public int idlanguage { get; set; }
         public int idword { get; set; }
         public int idappuser { get; set; }
         public Nullable<int> frequency { get; set; }
-        public int idlanguage { get; set; }
         public Nullable<int> ismemorized { get; set; }
     
         public virtual appuser appuser { get; set; }
-        public virtual word word { get; set; }
         public virtual language language { get; set; }
+        public virtual word word { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<wordlearninghistory> wordlearninghistory { get; set; }
     }

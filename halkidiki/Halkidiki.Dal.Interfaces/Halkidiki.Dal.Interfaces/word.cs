@@ -18,8 +18,8 @@ namespace Halkidiki.Dal.Interfaces
         public word()
         {
             this.translation = new HashSet<translation>();
-            this.wordfrequency = new HashSet<wordfrequency>();
             this.translationtag = new HashSet<translationtag>();
+            this.wordfrequency = new HashSet<wordfrequency>();
         }
     
         public int id { get; set; }
@@ -28,8 +28,8 @@ namespace Halkidiki.Dal.Interfaces
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<translation> translation { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<wordfrequency> wordfrequency { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<translationtag> translationtag { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<wordfrequency> wordfrequency { get; set; }
     }
 }
