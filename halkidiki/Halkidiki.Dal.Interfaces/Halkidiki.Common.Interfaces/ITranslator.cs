@@ -2,10 +2,10 @@
 
 namespace Halkidiki.Common.Interfaces
 {
-    public interface ITranslator<TTRanslationEngine, TTranslationCandidate, TTranslationResult>
+    public interface ITranslator<TTranslationEngine, in TTranslationCandidate, out TTranslationResult>
         where TTranslationCandidate : ITranslationCandidate
         where TTranslationResult : ITranslationResult
     {
-        List<TTranslationResult> Translate(TTranslationCandidate candidates);
+        IEnumerable<TTranslationResult> Translate(TTranslationCandidate candidates);
     }
 }

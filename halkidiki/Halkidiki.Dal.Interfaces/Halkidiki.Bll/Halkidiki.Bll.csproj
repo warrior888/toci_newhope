@@ -114,6 +114,14 @@
       <Project>{ee9b42b7-8846-4e51-a445-b5b95f35e99c}</Project>
       <Name>Halkidiki.Bll.Interfaces</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Halkidiki.Common.Interfaces\Halkidiki.Common.Interfaces.csproj">
+      <Project>{d8217480-0cef-499f-a92b-7bf26120bc4c}</Project>
+      <Name>Halkidiki.Common.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Halkidiki.Common\Halkidiki.Common.csproj">
+      <Project>{15F81899-4C6A-4FE7-9546-62230FC89CE1}</Project>
+      <Name>Halkidiki.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Halkidiki.Dal.Interfaces\Halkidiki.Dal.Interfaces.csproj">
       <Project>{675e0697-8755-45c1-8e92-9fa71764bfaf}</Project>
       <Name>Halkidiki.Dal.Interfaces</Name>
