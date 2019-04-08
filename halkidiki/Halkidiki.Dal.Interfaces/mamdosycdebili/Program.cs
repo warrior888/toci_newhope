@@ -17,7 +17,10 @@ namespace mamdosycdebili
 
             DalTests dt = new DalTests();
 
-            dt.TestAddedLanguage();
+           dt.TestAddedLanguage();
+
+         //   t.TranslateGoogleTest();
+
         }
     }
 }

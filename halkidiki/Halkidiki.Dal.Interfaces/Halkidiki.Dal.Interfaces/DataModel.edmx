@@ -4,81 +4,132 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="halkidikiModel.Store" Provider="Npgsql" ProviderManifestToken="11.1" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityContainer Name="halkidikiModelStoreContainer" />
-      </Schema></edmx:StorageModels>
-    <!-- CSDL content -->
-    <edmx:ConceptualModels>
-      <Schema Namespace="halkidikiModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="halkidikiModel.Store" Provider="Npgsql" ProviderManifestToken="11.1" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="appuser">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="login" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="idoccupation" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="occupation" Relationship="Self.appuser_idoccupation_fkey" FromRole="appuser" ToRole="occupation" />
-          <NavigationProperty Name="wordfrequency" Relationship="Self.wordfrequency_idappuser_fkey" FromRole="appuser" ToRole="wordfrequency" />
-          <NavigationProperty Name="logtime" Relationship="halkidikiModel.logtime_idappuser_fkey" FromRole="appuser" ToRole="logtime" />
-          <NavigationProperty Name="spokensentence" Relationship="halkidikiModel.spokensentence_idappuser_fkey" FromRole="appuser" ToRole="spokensentence" />
-          <NavigationProperty Name="wordlearninghistory" Relationship="halkidikiModel.wordlearninghistory_idappuser_fkey" FromRole="appuser" ToRole="wordlearninghistory" />
+          <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="login" Type="text" />
+          <Property Name="password" Type="text" />
+          <Property Name="email" Type="text" />
+          <Property Name="idoccupation" Type="int4" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cmc">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="text" />
+          <Property Name="value" Type="text" />
         </EntityType>
         <EntityType Name="language">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="language1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="translation" Relationship="Self.translation_idlanguage_fkey" FromRole="language" ToRole="translation" />
-          <NavigationProperty Name="wordfrequency" Relationship="halkidikiModel.wordfrequency_idlanguage_fkey" FromRole="language" ToRole="wordfrequency" />
-          <NavigationProperty Name="spokensentence" Relationship="halkidikiModel.spokensentence_idlanguage_fkey" FromRole="language" ToRole="spokensentence" />
+          <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="language" Type="text" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6005: The data type 'timetz' is currently not supported for the target Entity Framework version; the column 'loginappdata' in the table 'halkidiki.public.logtime' was excluded.
+warning 6005: The data type 'timetz' is currently not supported for the target Entity Framework version; the column 'logoutappdata' in the table 'halkidiki.public.logtime' was excluded.-->
+        <EntityType Name="logtime">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idappuser" Type="int4" Nullable="false" />
         </EntityType>
         <EntityType Name="occupation">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="occupation1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="appuser" Relationship="Self.appuser_idoccupation_fkey" FromRole="occupation" ToRole="appuser" />
+          <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="occupation" Type="text" />
+        </EntityType>
+        <EntityType Name="source">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="source" Type="text" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6005: The data type 'timetz' is currently not supported for the target Entity Framework version; the column 'sentencetime' in the table 'halkidiki.public.spokensentence' was excluded.-->
+        <EntityType Name="spokensentence">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idlanguage" Type="int4" Nullable="false" />
+          <Property Name="idsource" Type="int4" Nullable="false" />
+          <Property Name="idappuser" Type="int4" Nullable="false" />
+          <Property Name="sentence" Type="text" />
         </EntityType>
         <EntityType Name="translation">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="idword" Type="Int32" Nullable="false" />
-          <Property Name="idlanguage" Type="Int32" Nullable="false" />
-          <Property Name="translation1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="language" Relationship="Self.translation_idlanguage_fkey" FromRole="translation" ToRole="language" />
-          <NavigationProperty Name="word" Relationship="Self.translation_idword_fkey" FromRole="translation" ToRole="word" />
+          <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idword" Type="int4" Nullable="false" />
+          <Property Name="idlanguage" Type="int4" Nullable="false" />
+          <Property Name="translation" Type="text" />
+        </EntityType>
+        <EntityType Name="translationtag">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tag" Type="text" />
+          <Property Name="idword" Type="int4" Nullable="false" />
         </EntityType>
         <EntityType Name="word">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="word1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="translation" Relationship="Self.translation_idword_fkey" FromRole="word" ToRole="translation" />
-          <NavigationProperty Name="wordfrequency" Relationship="Self.wordfrequency_idword_fkey" FromRole="word" ToRole="wordfrequency" />
-          <NavigationProperty Name="translationtag" Relationship="halkidikiModel.translationtag_idword_fkey" FromRole="word" ToRole="translationtag" />
+          <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="word" Type="text" />
         </EntityType>
         <EntityType Name="wordfrequency">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="idword" Type="Int32" Nullable="false" />
-          <Property Name="idappuser" Type="Int32" Nullable="false" />
-          <Property Name="frequency" Type="Int32" />
-          <NavigationProperty Name="appuser" Relationship="Self.wordfrequency_idappuser_fkey" FromRole="wordfrequency" ToRole="appuser" />
-          <NavigationProperty Name="word" Relationship="Self.wordfrequency_idword_fkey" FromRole="wordfrequency" ToRole="word" />
-          <Property Name="idlanguage" Type="Int32" Nullable="false" />
-          <Property Name="ismemorized" Type="Int32" />
-          <NavigationProperty Name="language" Relationship="halkidikiModel.wordfrequency_idlanguage_fkey" FromRole="wordfrequency" ToRole="language" />
-          <NavigationProperty Name="wordlearninghistory" Relationship="halkidikiModel.wordlearninghistory_idwordfrequency_fkey" FromRole="wordfrequency" ToRole="wordlearninghistory" />
+          <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idlanguage" Type="int4" Nullable="false" />
+          <Property Name="idword" Type="int4" Nullable="false" />
+          <Property Name="idappuser" Type="int4" Nullable="false" />
+          <Property Name="frequency" Type="int4" />
+          <Property Name="ismemorized" Type="int4" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6005: The data type 'timetz' is currently not supported for the target Entity Framework version; the column 'answertime' in the table 'halkidiki.public.wordlearninghistory' was excluded.-->
+        <EntityType Name="wordlearninghistory">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idwordfrequency" Type="int4" Nullable="false" />
+          <Property Name="rate" Type="int4" />
+          <Property Name="idappuser" Type="int4" Nullable="false" />
+          <Property Name="pronouncedword" Type="text" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'halkidiki.public.translations' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="translations">
+          <Property Name="idword" Type="int4" />
+          <Property Name="word" Type="text" />
+          <Property Name="idlanguage" Type="int4" />
+          <Property Name="language" Type="text" />
+          <Property Name="idlanguagefrom" Type="int4" />
+          <Property Name="languagefrom" Type="text" />
+          <Property Name="idappuser" Type="int4" />
+          <Property Name="login" Type="text" />
+          <Property Name="idtranslation" Type="int4" />
+          <Property Name="translation" Type="text" />
+          <Property Name="frequency" Type="int4" />
+          <Property Name="translationfromid" Type="int4" />
+          <Property Name="translationfromword" Type="text" />
+        </EntityType>-->
         <Association Name="appuser_idoccupation_fkey">
           <End Role="occupation" Type="Self.occupation" Multiplicity="1" />
           <End Role="appuser" Type="Self.appuser" Multiplicity="*" />
@@ -91,15 +142,51 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="wordfrequency_idappuser_fkey">
+        <Association Name="logtime_idappuser_fkey">
           <End Role="appuser" Type="Self.appuser" Multiplicity="1" />
-          <End Role="wordfrequency" Type="Self.wordfrequency" Multiplicity="*" />
+          <End Role="logtime" Type="Self.logtime" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="appuser">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="wordfrequency">
+            <Dependent Role="logtime">
               <PropertyRef Name="idappuser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="spokensentence_idappuser_fkey">
+          <End Role="appuser" Type="Self.appuser" Multiplicity="1" />
+          <End Role="spokensentence" Type="Self.spokensentence" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="appuser">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="spokensentence">
+              <PropertyRef Name="idappuser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="spokensentence_idlanguage_fkey">
+          <End Role="language" Type="Self.language" Multiplicity="1" />
+          <End Role="spokensentence" Type="Self.spokensentence" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="language">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="spokensentence">
+              <PropertyRef Name="idlanguage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="spokensentence_idsource_fkey">
+          <End Role="source" Type="Self.source" Multiplicity="1" />
+          <End Role="spokensentence" Type="Self.spokensentence" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="source">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="spokensentence">
+              <PropertyRef Name="idsource" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -127,6 +214,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="translationtag_idword_fkey">
+          <End Role="word" Type="Self.word" Multiplicity="1" />
+          <End Role="translationtag" Type="Self.translationtag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="word">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="translationtag">
+              <PropertyRef Name="idword" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="wordfrequency_idappuser_fkey">
+          <End Role="appuser" Type="Self.appuser" Multiplicity="1" />
+          <End Role="wordfrequency" Type="Self.wordfrequency" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="appuser">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="wordfrequency">
+              <PropertyRef Name="idappuser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="wordfrequency_idlanguage_fkey">
+          <End Role="language" Type="Self.language" Multiplicity="1" />
+          <End Role="wordfrequency" Type="Self.wordfrequency" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="language">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="wordfrequency">
+              <PropertyRef Name="idlanguage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="wordfrequency_idword_fkey">
           <End Role="word" Type="Self.word" Multiplicity="1" />
           <End Role="wordfrequency" Type="Self.wordfrequency" Multiplicity="*" />
@@ -139,20 +262,62 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="halkidikiEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="appuser" EntityType="Self.appuser" />
-          <EntitySet Name="language" EntityType="Self.language" />
-          <EntitySet Name="occupation" EntityType="Self.occupation" />
-          <EntitySet Name="translation" EntityType="Self.translation" />
-          <EntitySet Name="word" EntityType="Self.word" />
-          <EntitySet Name="wordfrequency" EntityType="Self.wordfrequency" />
+        <Association Name="wordlearninghistory_idappuser_fkey">
+          <End Role="appuser" Type="Self.appuser" Multiplicity="1" />
+          <End Role="wordlearninghistory" Type="Self.wordlearninghistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="appuser">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="wordlearninghistory">
+              <PropertyRef Name="idappuser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="wordlearninghistory_idwordfrequency_fkey">
+          <End Role="wordfrequency" Type="Self.wordfrequency" Multiplicity="1" />
+          <End Role="wordlearninghistory" Type="Self.wordlearninghistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="wordfrequency">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="wordlearninghistory">
+              <PropertyRef Name="idwordfrequency" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="halkidikiModelStoreContainer">
+          <EntitySet Name="appuser" EntityType="Self.appuser" Schema="public" store:Type="Tables" />
+          <EntitySet Name="cmc" EntityType="Self.cmc" Schema="public" store:Type="Tables" />
+          <EntitySet Name="language" EntityType="Self.language" Schema="public" store:Type="Tables" />
+          <EntitySet Name="logtime" EntityType="Self.logtime" Schema="public" store:Type="Tables" />
+          <EntitySet Name="occupation" EntityType="Self.occupation" Schema="public" store:Type="Tables" />
+          <EntitySet Name="source" EntityType="Self.source" Schema="public" store:Type="Tables" />
+          <EntitySet Name="spokensentence" EntityType="Self.spokensentence" Schema="public" store:Type="Tables" />
+          <EntitySet Name="translation" EntityType="Self.translation" Schema="public" store:Type="Tables" />
+          <EntitySet Name="translationtag" EntityType="Self.translationtag" Schema="public" store:Type="Tables" />
+          <EntitySet Name="word" EntityType="Self.word" Schema="public" store:Type="Tables" />
+          <EntitySet Name="wordfrequency" EntityType="Self.wordfrequency" Schema="public" store:Type="Tables" />
+          <EntitySet Name="wordlearninghistory" EntityType="Self.wordlearninghistory" Schema="public" store:Type="Tables" />
           <AssociationSet Name="appuser_idoccupation_fkey" Association="Self.appuser_idoccupation_fkey">
             <End Role="occupation" EntitySet="occupation" />
             <End Role="appuser" EntitySet="appuser" />
           </AssociationSet>
-          <AssociationSet Name="wordfrequency_idappuser_fkey" Association="Self.wordfrequency_idappuser_fkey">
+          <AssociationSet Name="logtime_idappuser_fkey" Association="Self.logtime_idappuser_fkey">
             <End Role="appuser" EntitySet="appuser" />
-            <End Role="wordfrequency" EntitySet="wordfrequency" />
+            <End Role="logtime" EntitySet="logtime" />
+          </AssociationSet>
+          <AssociationSet Name="spokensentence_idappuser_fkey" Association="Self.spokensentence_idappuser_fkey">
+            <End Role="appuser" EntitySet="appuser" />
+            <End Role="spokensentence" EntitySet="spokensentence" />
+          </AssociationSet>
+          <AssociationSet Name="spokensentence_idlanguage_fkey" Association="Self.spokensentence_idlanguage_fkey">
+            <End Role="language" EntitySet="language" />
+            <End Role="spokensentence" EntitySet="spokensentence" />
+          </AssociationSet>
+          <AssociationSet Name="spokensentence_idsource_fkey" Association="Self.spokensentence_idsource_fkey">
+            <End Role="source" EntitySet="source" />
+            <End Role="spokensentence" EntitySet="spokensentence" />
           </AssociationSet>
           <AssociationSet Name="translation_idlanguage_fkey" Association="Self.translation_idlanguage_fkey">
             <End Role="language" EntitySet="language" />
@@ -162,61 +327,51 @@
             <End Role="word" EntitySet="word" />
             <End Role="translation" EntitySet="translation" />
           </AssociationSet>
+          <AssociationSet Name="translationtag_idword_fkey" Association="Self.translationtag_idword_fkey">
+            <End Role="word" EntitySet="word" />
+            <End Role="translationtag" EntitySet="translationtag" />
+          </AssociationSet>
+          <AssociationSet Name="wordfrequency_idappuser_fkey" Association="Self.wordfrequency_idappuser_fkey">
+            <End Role="appuser" EntitySet="appuser" />
+            <End Role="wordfrequency" EntitySet="wordfrequency" />
+          </AssociationSet>
+          <AssociationSet Name="wordfrequency_idlanguage_fkey" Association="Self.wordfrequency_idlanguage_fkey">
+            <End Role="language" EntitySet="language" />
+            <End Role="wordfrequency" EntitySet="wordfrequency" />
+          </AssociationSet>
           <AssociationSet Name="wordfrequency_idword_fkey" Association="Self.wordfrequency_idword_fkey">
             <End Role="word" EntitySet="word" />
             <End Role="wordfrequency" EntitySet="wordfrequency" />
           </AssociationSet>
-          <AssociationSet Name="wordfrequency_idlanguage_fkey" Association="halkidikiModel.wordfrequency_idlanguage_fkey">
-            <End Role="language" EntitySet="language" />
-            <End Role="wordfrequency" EntitySet="wordfrequency" />
-          </AssociationSet>
-          <EntitySet Name="cmc" EntityType="halkidikiModel.cmc" />
-          <EntitySet Name="logtime" EntityType="halkidikiModel.logtime" />
-          <EntitySet Name="source" EntityType="halkidikiModel.source" />
-          <EntitySet Name="spokensentence" EntityType="halkidikiModel.spokensentence" />
-          <EntitySet Name="translationtag" EntityType="halkidikiModel.translationtag" />
-          <EntitySet Name="wordlearninghistory" EntityType="halkidikiModel.wordlearninghistory" />
-          <AssociationSet Name="logtime_idappuser_fkey" Association="halkidikiModel.logtime_idappuser_fkey">
-            <End Role="appuser" EntitySet="appuser" />
-            <End Role="logtime" EntitySet="logtime" />
-          </AssociationSet>
-          <AssociationSet Name="spokensentence_idappuser_fkey" Association="halkidikiModel.spokensentence_idappuser_fkey">
-            <End Role="appuser" EntitySet="appuser" />
-            <End Role="spokensentence" EntitySet="spokensentence" />
-          </AssociationSet>
-          <AssociationSet Name="wordlearninghistory_idappuser_fkey" Association="halkidikiModel.wordlearninghistory_idappuser_fkey">
+          <AssociationSet Name="wordlearninghistory_idappuser_fkey" Association="Self.wordlearninghistory_idappuser_fkey">
             <End Role="appuser" EntitySet="appuser" />
             <End Role="wordlearninghistory" EntitySet="wordlearninghistory" />
           </AssociationSet>
-          <AssociationSet Name="spokensentence_idlanguage_fkey" Association="halkidikiModel.spokensentence_idlanguage_fkey">
-            <End Role="language" EntitySet="language" />
-            <End Role="spokensentence" EntitySet="spokensentence" />
-          </AssociationSet>
-          <AssociationSet Name="spokensentence_idsource_fkey" Association="halkidikiModel.spokensentence_idsource_fkey">
-            <End Role="source" EntitySet="source" />
-            <End Role="spokensentence" EntitySet="spokensentence" />
-          </AssociationSet>
-          <AssociationSet Name="translationtag_idword_fkey" Association="halkidikiModel.translationtag_idword_fkey">
-            <End Role="word" EntitySet="word" />
-            <End Role="translationtag" EntitySet="translationtag" />
-          </AssociationSet>
-          <AssociationSet Name="wordlearninghistory_idwordfrequency_fkey" Association="halkidikiModel.wordlearninghistory_idwordfrequency_fkey">
+          <AssociationSet Name="wordlearninghistory_idwordfrequency_fkey" Association="Self.wordlearninghistory_idwordfrequency_fkey">
             <End Role="wordfrequency" EntitySet="wordfrequency" />
             <End Role="wordlearninghistory" EntitySet="wordlearninghistory" />
           </AssociationSet>
         </EntityContainer>
-        <Association Name="wordfrequency_idlanguage_fkey">
-          <End Type="halkidikiModel.language" Role="language" Multiplicity="1" />
-          <End Type="halkidikiModel.wordfrequency" Role="wordfrequency" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="language">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="wordfrequency">
-              <PropertyRef Name="idlanguage" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="halkidikiModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="appuser">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="login" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="idoccupation" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="occupation" Relationship="Self.appuser_idoccupation_fkey" FromRole="appuser" ToRole="occupation" />
+          <NavigationProperty Name="logtime" Relationship="Self.logtime_idappuser_fkey" FromRole="appuser" ToRole="logtime" />
+          <NavigationProperty Name="spokensentence" Relationship="Self.spokensentence_idappuser_fkey" FromRole="appuser" ToRole="spokensentence" />
+          <NavigationProperty Name="wordfrequency" Relationship="Self.wordfrequency_idappuser_fkey" FromRole="appuser" ToRole="wordfrequency" />
+          <NavigationProperty Name="wordlearninghistory" Relationship="Self.wordlearninghistory_idappuser_fkey" FromRole="appuser" ToRole="wordlearninghistory" />
+        </EntityType>
         <EntityType Name="cmc">
           <Key>
             <PropertyRef Name="id" />
@@ -225,13 +380,31 @@
           <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="language">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="language1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="spokensentence" Relationship="Self.spokensentence_idlanguage_fkey" FromRole="language" ToRole="spokensentence" />
+          <NavigationProperty Name="translation" Relationship="Self.translation_idlanguage_fkey" FromRole="language" ToRole="translation" />
+          <NavigationProperty Name="wordfrequency" Relationship="Self.wordfrequency_idlanguage_fkey" FromRole="language" ToRole="wordfrequency" />
+        </EntityType>
         <EntityType Name="logtime">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="idappuser" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="appuser" Relationship="halkidikiModel.logtime_idappuser_fkey" FromRole="logtime" ToRole="appuser" />
+          <NavigationProperty Name="appuser" Relationship="Self.logtime_idappuser_fkey" FromRole="logtime" ToRole="appuser" />
+        </EntityType>
+        <EntityType Name="occupation">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="occupation1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="appuser" Relationship="Self.appuser_idoccupation_fkey" FromRole="occupation" ToRole="appuser" />
         </EntityType>
         <EntityType Name="source">
           <Key>
@@ -239,7 +412,7 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="source1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="spokensentence" Relationship="halkidikiModel.spokensentence_idsource_fkey" FromRole="source" ToRole="spokensentence" />
+          <NavigationProperty Name="spokensentence" Relationship="Self.spokensentence_idsource_fkey" FromRole="source" ToRole="spokensentence" />
         </EntityType>
         <EntityType Name="spokensentence">
           <Key>
@@ -250,9 +423,20 @@
           <Property Name="idsource" Type="Int32" Nullable="false" />
           <Property Name="idappuser" Type="Int32" Nullable="false" />
           <Property Name="sentence" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="appuser" Relationship="halkidikiModel.spokensentence_idappuser_fkey" FromRole="spokensentence" ToRole="appuser" />
-          <NavigationProperty Name="language" Relationship="halkidikiModel.spokensentence_idlanguage_fkey" FromRole="spokensentence" ToRole="language" />
-          <NavigationProperty Name="source" Relationship="halkidikiModel.spokensentence_idsource_fkey" FromRole="spokensentence" ToRole="source" />
+          <NavigationProperty Name="appuser" Relationship="Self.spokensentence_idappuser_fkey" FromRole="spokensentence" ToRole="appuser" />
+          <NavigationProperty Name="language" Relationship="Self.spokensentence_idlanguage_fkey" FromRole="spokensentence" ToRole="language" />
+          <NavigationProperty Name="source" Relationship="Self.spokensentence_idsource_fkey" FromRole="spokensentence" ToRole="source" />
+        </EntityType>
+        <EntityType Name="translation">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idword" Type="Int32" Nullable="false" />
+          <Property Name="idlanguage" Type="Int32" Nullable="false" />
+          <Property Name="translation1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="language" Relationship="Self.translation_idlanguage_fkey" FromRole="translation" ToRole="language" />
+          <NavigationProperty Name="word" Relationship="Self.translation_idword_fkey" FromRole="translation" ToRole="word" />
         </EntityType>
         <EntityType Name="translationtag">
           <Key>
@@ -261,7 +445,32 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="tag" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="idword" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="word" Relationship="halkidikiModel.translationtag_idword_fkey" FromRole="translationtag" ToRole="word" />
+          <NavigationProperty Name="word" Relationship="Self.translationtag_idword_fkey" FromRole="translationtag" ToRole="word" />
+        </EntityType>
+        <EntityType Name="word">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="word1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="translation" Relationship="Self.translation_idword_fkey" FromRole="word" ToRole="translation" />
+          <NavigationProperty Name="translationtag" Relationship="Self.translationtag_idword_fkey" FromRole="word" ToRole="translationtag" />
+          <NavigationProperty Name="wordfrequency" Relationship="Self.wordfrequency_idword_fkey" FromRole="word" ToRole="wordfrequency" />
+        </EntityType>
+        <EntityType Name="wordfrequency">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idlanguage" Type="Int32" Nullable="false" />
+          <Property Name="idword" Type="Int32" Nullable="false" />
+          <Property Name="idappuser" Type="Int32" Nullable="false" />
+          <Property Name="frequency" Type="Int32" />
+          <Property Name="ismemorized" Type="Int32" />
+          <NavigationProperty Name="appuser" Relationship="Self.wordfrequency_idappuser_fkey" FromRole="wordfrequency" ToRole="appuser" />
+          <NavigationProperty Name="language" Relationship="Self.wordfrequency_idlanguage_fkey" FromRole="wordfrequency" ToRole="language" />
+          <NavigationProperty Name="word" Relationship="Self.wordfrequency_idword_fkey" FromRole="wordfrequency" ToRole="word" />
+          <NavigationProperty Name="wordlearninghistory" Relationship="Self.wordlearninghistory_idwordfrequency_fkey" FromRole="wordfrequency" ToRole="wordlearninghistory" />
         </EntityType>
         <EntityType Name="wordlearninghistory">
           <Key>
@@ -272,12 +481,24 @@
           <Property Name="rate" Type="Int32" />
           <Property Name="idappuser" Type="Int32" Nullable="false" />
           <Property Name="pronouncedword" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="appuser" Relationship="halkidikiModel.wordlearninghistory_idappuser_fkey" FromRole="wordlearninghistory" ToRole="appuser" />
-          <NavigationProperty Name="wordfrequency" Relationship="halkidikiModel.wordlearninghistory_idwordfrequency_fkey" FromRole="wordlearninghistory" ToRole="wordfrequency" />
+          <NavigationProperty Name="appuser" Relationship="Self.wordlearninghistory_idappuser_fkey" FromRole="wordlearninghistory" ToRole="appuser" />
+          <NavigationProperty Name="wordfrequency" Relationship="Self.wordlearninghistory_idwordfrequency_fkey" FromRole="wordlearninghistory" ToRole="wordfrequency" />
         </EntityType>
+        <Association Name="appuser_idoccupation_fkey">
+          <End Role="occupation" Type="Self.occupation" Multiplicity="1" />
+          <End Role="appuser" Type="Self.appuser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="occupation">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="appuser">
+              <PropertyRef Name="idoccupation" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="logtime_idappuser_fkey">
-          <End Type="halkidikiModel.appuser" Role="appuser" Multiplicity="1" />
-          <End Type="halkidikiModel.logtime" Role="logtime" Multiplicity="*" />
+          <End Role="appuser" Type="Self.appuser" Multiplicity="1" />
+          <End Role="logtime" Type="Self.logtime" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="appuser">
               <PropertyRef Name="id" />
@@ -288,8 +509,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="spokensentence_idappuser_fkey">
-          <End Type="halkidikiModel.appuser" Role="appuser" Multiplicity="1" />
-          <End Type="halkidikiModel.spokensentence" Role="spokensentence" Multiplicity="*" />
+          <End Role="appuser" Type="Self.appuser" Multiplicity="1" />
+          <End Role="spokensentence" Type="Self.spokensentence" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="appuser">
               <PropertyRef Name="id" />
@@ -299,9 +520,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="wordfrequency_idappuser_fkey">
+          <End Role="appuser" Type="Self.appuser" Multiplicity="1" />
+          <End Role="wordfrequency" Type="Self.wordfrequency" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="appuser">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="wordfrequency">
+              <PropertyRef Name="idappuser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="wordlearninghistory_idappuser_fkey">
-          <End Type="halkidikiModel.appuser" Role="appuser" Multiplicity="1" />
-          <End Type="halkidikiModel.wordlearninghistory" Role="wordlearninghistory" Multiplicity="*" />
+          <End Role="appuser" Type="Self.appuser" Multiplicity="1" />
+          <End Role="wordlearninghistory" Type="Self.wordlearninghistory" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="appuser">
               <PropertyRef Name="id" />
@@ -312,8 +545,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="spokensentence_idlanguage_fkey">
-          <End Type="halkidikiModel.language" Role="language" Multiplicity="1" />
-          <End Type="halkidikiModel.spokensentence" Role="spokensentence" Multiplicity="*" />
+          <End Role="language" Type="Self.language" Multiplicity="1" />
+          <End Role="spokensentence" Type="Self.spokensentence" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="language">
               <PropertyRef Name="id" />
@@ -323,9 +556,33 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="translation_idlanguage_fkey">
+          <End Role="language" Type="Self.language" Multiplicity="1" />
+          <End Role="translation" Type="Self.translation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="language">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="translation">
+              <PropertyRef Name="idlanguage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="wordfrequency_idlanguage_fkey">
+          <End Role="language" Type="Self.language" Multiplicity="1" />
+          <End Role="wordfrequency" Type="Self.wordfrequency" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="language">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="wordfrequency">
+              <PropertyRef Name="idlanguage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="spokensentence_idsource_fkey">
-          <End Type="halkidikiModel.source" Role="source" Multiplicity="1" />
-          <End Type="halkidikiModel.spokensentence" Role="spokensentence" Multiplicity="*" />
+          <End Role="source" Type="Self.source" Multiplicity="1" />
+          <End Role="spokensentence" Type="Self.spokensentence" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="source">
               <PropertyRef Name="id" />
@@ -335,9 +592,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="translation_idword_fkey">
+          <End Role="word" Type="Self.word" Multiplicity="1" />
+          <End Role="translation" Type="Self.translation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="word">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="translation">
+              <PropertyRef Name="idword" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="translationtag_idword_fkey">
-          <End Type="halkidikiModel.word" Role="word" Multiplicity="1" />
-          <End Type="halkidikiModel.translationtag" Role="translationtag" Multiplicity="*" />
+          <End Role="word" Type="Self.word" Multiplicity="1" />
+          <End Role="translationtag" Type="Self.translationtag" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="word">
               <PropertyRef Name="id" />
@@ -347,9 +616,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="wordfrequency_idword_fkey">
+          <End Role="word" Type="Self.word" Multiplicity="1" />
+          <End Role="wordfrequency" Type="Self.wordfrequency" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="word">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="wordfrequency">
+              <PropertyRef Name="idword" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="wordlearninghistory_idwordfrequency_fkey">
-          <End Type="halkidikiModel.wordfrequency" Role="wordfrequency" Multiplicity="1" />
-          <End Type="halkidikiModel.wordlearninghistory" Role="wordlearninghistory" Multiplicity="*" />
+          <End Role="wordfrequency" Type="Self.wordfrequency" Multiplicity="1" />
+          <End Role="wordlearninghistory" Type="Self.wordlearninghistory" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="wordfrequency">
               <PropertyRef Name="id" />
@@ -359,13 +640,192 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityContainer Name="halkidikiEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="appuser" EntityType="Self.appuser" />
+          <EntitySet Name="cmc" EntityType="Self.cmc" />
+          <EntitySet Name="language" EntityType="Self.language" />
+          <EntitySet Name="logtime" EntityType="Self.logtime" />
+          <EntitySet Name="occupation" EntityType="Self.occupation" />
+          <EntitySet Name="source" EntityType="Self.source" />
+          <EntitySet Name="spokensentence" EntityType="Self.spokensentence" />
+          <EntitySet Name="translation" EntityType="Self.translation" />
+          <EntitySet Name="translationtag" EntityType="Self.translationtag" />
+          <EntitySet Name="word" EntityType="Self.word" />
+          <EntitySet Name="wordfrequency" EntityType="Self.wordfrequency" />
+          <EntitySet Name="wordlearninghistory" EntityType="Self.wordlearninghistory" />
+          <AssociationSet Name="appuser_idoccupation_fkey" Association="Self.appuser_idoccupation_fkey">
+            <End Role="occupation" EntitySet="occupation" />
+            <End Role="appuser" EntitySet="appuser" />
+          </AssociationSet>
+          <AssociationSet Name="logtime_idappuser_fkey" Association="Self.logtime_idappuser_fkey">
+            <End Role="appuser" EntitySet="appuser" />
+            <End Role="logtime" EntitySet="logtime" />
+          </AssociationSet>
+          <AssociationSet Name="spokensentence_idappuser_fkey" Association="Self.spokensentence_idappuser_fkey">
+            <End Role="appuser" EntitySet="appuser" />
+            <End Role="spokensentence" EntitySet="spokensentence" />
+          </AssociationSet>
+          <AssociationSet Name="wordfrequency_idappuser_fkey" Association="Self.wordfrequency_idappuser_fkey">
+            <End Role="appuser" EntitySet="appuser" />
+            <End Role="wordfrequency" EntitySet="wordfrequency" />
+          </AssociationSet>
+          <AssociationSet Name="wordlearninghistory_idappuser_fkey" Association="Self.wordlearninghistory_idappuser_fkey">
+            <End Role="appuser" EntitySet="appuser" />
+            <End Role="wordlearninghistory" EntitySet="wordlearninghistory" />
+          </AssociationSet>
+          <AssociationSet Name="spokensentence_idlanguage_fkey" Association="Self.spokensentence_idlanguage_fkey">
+            <End Role="language" EntitySet="language" />
+            <End Role="spokensentence" EntitySet="spokensentence" />
+          </AssociationSet>
+          <AssociationSet Name="translation_idlanguage_fkey" Association="Self.translation_idlanguage_fkey">
+            <End Role="language" EntitySet="language" />
+            <End Role="translation" EntitySet="translation" />
+          </AssociationSet>
+          <AssociationSet Name="wordfrequency_idlanguage_fkey" Association="Self.wordfrequency_idlanguage_fkey">
+            <End Role="language" EntitySet="language" />
+            <End Role="wordfrequency" EntitySet="wordfrequency" />
+          </AssociationSet>
+          <AssociationSet Name="spokensentence_idsource_fkey" Association="Self.spokensentence_idsource_fkey">
+            <End Role="source" EntitySet="source" />
+            <End Role="spokensentence" EntitySet="spokensentence" />
+          </AssociationSet>
+          <AssociationSet Name="translation_idword_fkey" Association="Self.translation_idword_fkey">
+            <End Role="word" EntitySet="word" />
+            <End Role="translation" EntitySet="translation" />
+          </AssociationSet>
+          <AssociationSet Name="translationtag_idword_fkey" Association="Self.translationtag_idword_fkey">
+            <End Role="word" EntitySet="word" />
+            <End Role="translationtag" EntitySet="translationtag" />
+          </AssociationSet>
+          <AssociationSet Name="wordfrequency_idword_fkey" Association="Self.wordfrequency_idword_fkey">
+            <End Role="word" EntitySet="word" />
+            <End Role="wordfrequency" EntitySet="wordfrequency" />
+          </AssociationSet>
+          <AssociationSet Name="wordlearninghistory_idwordfrequency_fkey" Association="Self.wordlearninghistory_idwordfrequency_fkey">
+            <End Role="wordfrequency" EntitySet="wordfrequency" />
+            <End Role="wordlearninghistory" EntitySet="wordlearninghistory" />
+          </AssociationSet>
+        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="halkidikiModelStoreContainer" CdmEntityContainer="halkidikiEntities">
-          </EntityContainerMapping>
+          <EntitySetMapping Name="appuser">
+            <EntityTypeMapping TypeName="halkidikiModel.appuser">
+              <MappingFragment StoreEntitySet="appuser">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="idoccupation" ColumnName="idoccupation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cmc">
+            <EntityTypeMapping TypeName="halkidikiModel.cmc">
+              <MappingFragment StoreEntitySet="cmc">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="value" ColumnName="value" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="language">
+            <EntityTypeMapping TypeName="halkidikiModel.language">
+              <MappingFragment StoreEntitySet="language">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="language1" ColumnName="language" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="logtime">
+            <EntityTypeMapping TypeName="halkidikiModel.logtime">
+              <MappingFragment StoreEntitySet="logtime">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idappuser" ColumnName="idappuser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="occupation">
+            <EntityTypeMapping TypeName="halkidikiModel.occupation">
+              <MappingFragment StoreEntitySet="occupation">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="occupation1" ColumnName="occupation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="source">
+            <EntityTypeMapping TypeName="halkidikiModel.source">
+              <MappingFragment StoreEntitySet="source">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="source1" ColumnName="source" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="spokensentence">
+            <EntityTypeMapping TypeName="halkidikiModel.spokensentence">
+              <MappingFragment StoreEntitySet="spokensentence">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idlanguage" ColumnName="idlanguage" />
+                <ScalarProperty Name="idsource" ColumnName="idsource" />
+                <ScalarProperty Name="idappuser" ColumnName="idappuser" />
+                <ScalarProperty Name="sentence" ColumnName="sentence" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="translation">
+            <EntityTypeMapping TypeName="halkidikiModel.translation">
+              <MappingFragment StoreEntitySet="translation">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idword" ColumnName="idword" />
+                <ScalarProperty Name="idlanguage" ColumnName="idlanguage" />
+                <ScalarProperty Name="translation1" ColumnName="translation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="translationtag">
+            <EntityTypeMapping TypeName="halkidikiModel.translationtag">
+              <MappingFragment StoreEntitySet="translationtag">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="tag" ColumnName="tag" />
+                <ScalarProperty Name="idword" ColumnName="idword" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="word">
+            <EntityTypeMapping TypeName="halkidikiModel.word">
+              <MappingFragment StoreEntitySet="word">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="word1" ColumnName="word" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wordfrequency">
+            <EntityTypeMapping TypeName="halkidikiModel.wordfrequency">
+              <MappingFragment StoreEntitySet="wordfrequency">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idlanguage" ColumnName="idlanguage" />
+                <ScalarProperty Name="idword" ColumnName="idword" />
+                <ScalarProperty Name="idappuser" ColumnName="idappuser" />
+                <ScalarProperty Name="frequency" ColumnName="frequency" />
+                <ScalarProperty Name="ismemorized" ColumnName="ismemorized" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wordlearninghistory">
+            <EntityTypeMapping TypeName="halkidikiModel.wordlearninghistory">
+              <MappingFragment StoreEntitySet="wordlearninghistory">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idwordfrequency" ColumnName="idwordfrequency" />
+                <ScalarProperty Name="rate" ColumnName="rate" />
+                <ScalarProperty Name="idappuser" ColumnName="idappuser" />
+                <ScalarProperty Name="pronouncedword" ColumnName="pronouncedword" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>
@@ -379,7 +839,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />

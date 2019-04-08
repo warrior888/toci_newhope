@@ -21,9 +21,14 @@ namespace Halkidiki.Bll
 
             foreach(string word in sentenceElements)
             {
-                translation t = translationDal.Select(new SelectSql<translation, string>() {Where = model => model.language.language1 == languageFrom && model.translation1 == word}).First();
-
-
+                // zdanie txt
+                // posiekaj, sprawdz kazde slowo czy istnieje w bazie
+                // jezeli tak podbij wspolczynnik (jako czesto uzywane) jezeli nie przetlumacz i dodaj 
+                  translation t = translationDal.Select(new SelectSql<translation, string>() {Where = model => model.language.language1 == languageFrom && model.translation1 == word}).First();
+                  //Michał W tak
+                // Michał M kurwa kto to pisał
+                // Michał Wój idzie
+                    
             }
 
             return true;

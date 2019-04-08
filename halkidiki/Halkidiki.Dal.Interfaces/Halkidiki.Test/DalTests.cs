@@ -30,10 +30,12 @@ namespace Halkidiki.Test
         {
             SentenceManipulator sen = new SentenceManipulator();
 
-            sen.CheckAddLanguage("pl");
-            sen.CheckAddLanguage("pl");
+         //   sen.CheckAddLanguage("pl");
 
+          bool x =  sen.AcceptSentence(1, "wife house horse water dupa", "en", "pl");
+                //sen.CheckAddLanguage("pl");
 
+            
 
 
         }

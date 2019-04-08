@@ -9,5 +9,7 @@ namespace Halkidiki.Common.Interfaces
         string LanguageFrom { get; set; }
 
         string LanguageTo { get; set; }
+
+    
     }
 }

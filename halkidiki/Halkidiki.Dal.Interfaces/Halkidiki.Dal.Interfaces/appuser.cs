@@ -17,9 +17,9 @@ namespace Halkidiki.Dal.Interfaces
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public appuser()
         {
-            this.wordfrequency = new HashSet<wordfrequency>();
             this.logtime = new HashSet<logtime>();
             this.spokensentence = new HashSet<spokensentence>();
+            this.wordfrequency = new HashSet<wordfrequency>();
             this.wordlearninghistory = new HashSet<wordlearninghistory>();
         }
     
@@ -31,11 +31,11 @@ namespace Halkidiki.Dal.Interfaces
     
         public virtual occupation occupation { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<wordfrequency> wordfrequency { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<logtime> logtime { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<spokensentence> spokensentence { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<wordfrequency> wordfrequency { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<wordlearninghistory> wordlearninghistory { get; set; }
     }

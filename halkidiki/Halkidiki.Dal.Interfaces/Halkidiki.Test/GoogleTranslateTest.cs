@@ -11,7 +11,7 @@ namespace Halkidiki.Test
         public void TranslateGoogleTest()
 
         {
-            GoogleTranslator googleTranslator = new GoogleTranslator();
+           GoogleTranslator googleTranslator = new GoogleTranslator();
 
             TranslationCandidate candidate = new TranslationCandidate()
             {
@@ -29,7 +29,8 @@ namespace Halkidiki.Test
 
             };
 
-            List<TranslationResult> result = googleTranslator.Translate(candidate);
+           List<TranslationResult> result = googleTranslator.Translate(candidate);
+           
         }
     }
 }
