@@ -12,6 +12,7 @@
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -75,13 +76,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bll\ApiTranslationProxy.cs" />
+    <Compile Include="Calculator.cs" />
     <Compile Include="Dal\DbAccessBase.cs" />
     <Compile Include="Dal\OracleDbAccess.cs" />
     <Compile Include="Dal\PostgresqlDbAccess.cs" />
     <Compile Include="Dal\TranslationDal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
