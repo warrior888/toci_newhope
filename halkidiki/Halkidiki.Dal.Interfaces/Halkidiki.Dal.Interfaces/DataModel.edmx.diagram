@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2b540ed769d54758a29aea6fbb564967" Name="Diagram1">
+        <EntityTypeShape EntityType="halkidikiModel.appuser" Width="1.5" PointX="3" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="halkidikiModel.cmc" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="halkidikiModel.language" Width="1.5" PointX="3" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="halkidikiModel.logtime" Width="1.5" PointX="5.25" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="halkidikiModel.occupation" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="halkidikiModel.source" Width="1.5" PointX="3" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="halkidikiModel.spokensentence" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="halkidikiModel.translation" Width="1.5" PointX="5.25" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="halkidikiModel.translationtag" Width="1.5" PointX="5.25" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="halkidikiModel.word" Width="1.5" PointX="3" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="halkidikiModel.wordfrequency" Width="1.5" PointX="5.25" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="halkidikiModel.wordlearninghistory" Width="1.5" PointX="7.5" PointY="5.875" IsExpanded="true" />
+        <AssociationConnector Association="halkidikiModel.appuser_idoccupation_fkey" ManuallyRouted="false" />
+        <AssociationConnector Association="halkidikiModel.logtime_idappuser_fkey" ManuallyRouted="false" />
+        <AssociationConnector Association="halkidikiModel.spokensentence_idappuser_fkey" ManuallyRouted="false" />
+        <AssociationConnector Association="halkidikiModel.wordfrequency_idappuser_fkey" ManuallyRouted="false" />
+        <AssociationConnector Association="halkidikiModel.wordlearninghistory_idappuser_fkey" ManuallyRouted="false" />
+        <AssociationConnector Association="halkidikiModel.spokensentence_idlanguage_fkey" ManuallyRouted="false" />
+        <AssociationConnector Association="halkidikiModel.translation_idlanguage_fkey" ManuallyRouted="false" />
+        <AssociationConnector Association="halkidikiModel.wordfrequency_idlanguage_fkey" ManuallyRouted="false" />
+        <AssociationConnector Association="halkidikiModel.spokensentence_idsource_fkey" ManuallyRouted="false" />
+        <AssociationConnector Association="halkidikiModel.translation_idword_fkey" ManuallyRouted="false" />
+        <AssociationConnector Association="halkidikiModel.translationtag_idword_fkey" ManuallyRouted="false" />
+        <AssociationConnector Association="halkidikiModel.wordfrequency_idword_fkey" ManuallyRouted="false" />
+        <AssociationConnector Association="halkidikiModel.wordlearninghistory_idwordfrequency_fkey" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

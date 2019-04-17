@@ -1,0 +1,4 @@
+1. own language detection - split on space, "unique clause on words", select each word from db with lang info, get each word info with lang detected, if more than one language detected do not ask google
+2. own sentence translation
+3. user cost statistics 
+4. commercial serving

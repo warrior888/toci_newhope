@@ -2,24 +2,38 @@
 
 namespace Toci.business.Dal
 {
-    public class TranslationDal
+    public class TranslationDal : PostgresqlDbAccess
     {
-        protected DbAccessBase dbAccess = new PostgresqlDbAccess();
+        
 
-        public virtual bool Insert(string name, string language = "pl")
+        public virtual int Insert(string name, string language = "pl")
         {
-            string query = "insert into word (name, language) values ('" + name + "', '" + language + "');";
+            string query = "insert into word (name, language) values ('" + name + "', '" + language + "') returning id;";
 
-            return dbAccess.ExecuteInsert(query);
+            return ExecuteInsert(query);
 
 
+        }
+
+        public virtual int InsertToTranslationmap(int idWord, int idWordChild) //translationmap
+        {
+             string query = "insert into translationmap (id_word, id_word_child) values (" + idWord + ", " + idWordChild + ") returning id;";
+
+            return ExecuteInsert(query);  
         }
 
         public virtual DataTable GetTranslations(string toLanguage)
         {
             string query = "select * from WordTranslation where tolanguage = '" + toLanguage + "'";
 
-            return dbAccess.ExecuteSelect(query);
+            return ExecuteSelect(query);
+        }
+
+        public virtual DataTable GetTranslationsFromTo(string fromLanguage, string toLanguage)
+        {
+            string query = "select * from translations where fromlanguage = '" + fromLanguage +"' and tolanguage = '" + toLanguage + "'";
+
+            return ExecuteSelect(query);
         }
     }
 }

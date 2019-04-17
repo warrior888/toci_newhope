@@ -26,12 +26,7 @@ namespace Toci.Lang.Ui
         {
             //dal.Insert(textBox1.Text);
 
-            string[] languages = {"pl", "en", "de", "nl"};
-
-            foreach (string language in languages)
-            {
-                translationProxy.AddTranslation(textBox1.Text, language);
-            }
+            translationProxy.AddTranslation(textBox1.Text);
 
 
         }

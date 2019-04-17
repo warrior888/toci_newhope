@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Toci.Lang.Ui", "Toci.Lang.U
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Toci.business", "..\Toci.business\Toci.business.csproj", "{CB32548B-2BB7-41C5-842B-0D8D63EA1623}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Toci.Tests", "Toci.Tests\Toci.Tests.csproj", "{5317B41D-9F28-49DC-96DB-117EF95B30E8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Toci.Business.Interfaces", "Toci.Business.Interfaces\Toci.Business.Interfaces.csproj", "{8FC4BDAA-1EE3-449C-909B-C403C71E55A9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{CB32548B-2BB7-41C5-842B-0D8D63EA1623}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CB32548B-2BB7-41C5-842B-0D8D63EA1623}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CB32548B-2BB7-41C5-842B-0D8D63EA1623}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5317B41D-9F28-49DC-96DB-117EF95B30E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5317B41D-9F28-49DC-96DB-117EF95B30E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5317B41D-9F28-49DC-96DB-117EF95B30E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5317B41D-9F28-49DC-96DB-117EF95B30E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FC4BDAA-1EE3-449C-909B-C403C71E55A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FC4BDAA-1EE3-449C-909B-C403C71E55A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FC4BDAA-1EE3-449C-909B-C403C71E55A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FC4BDAA-1EE3-449C-909B-C403C71E55A9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
